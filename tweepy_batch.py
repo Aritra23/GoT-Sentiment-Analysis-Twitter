@@ -12,7 +12,7 @@ conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
 # Define the 'classDB' database in Mongo
 db = client.projDB
-tweet = db.tweet.find()
+# tweet = db.char_hashtags.find()
 
 #Variables that contains the user credentials to access Twitter API
 access_token = "114010579-UscavtyluJ4ZOjGBGPwF3Xy8i5ynDgmeiYRLQ9WL"
@@ -26,7 +26,7 @@ class StdOutListener(StreamListener):
     # Insert a document into the 'tweet' collection
         data = json.loads(data)
         if data["lang"] == 'en':
-            db.tweet.insert_one(
+            db.char_hashtags.insert_one(
                 {
                 'id': int(data["id"]),
                 'text': data["text"],
@@ -50,5 +50,33 @@ auth.set_access_token(access_token, access_token_secret)
 stream = Stream(auth, l)
 
 #This line filter Twitter Streams to capture data by the keywords: 'python', 'javascript', 'ruby'
-stream.filter(track=['Game of Thrones', 'A Song of Ice and Fire', 'Iron Thrones'])
-stream.filter(track=['Game of Thrones', 'A Song of Ice and Fire', 'Iron Thrones'])
+stream.filter(track=['DaenerysTargaryen', '#DaenerysTargaryen'])
+# stream.filter(track=['Game of Thrones', 'A Song of Ice and Fire', 'Iron Thrones'])
+# start_mining(["#NotToday", 
+#               "#TheLongNight.", 
+#               "#GameofThrones",       Complete
+#               "#Dracarys",            Complete
+#               "#GOT", 
+#               "#GOTS8", 
+#               "#ForTheThrone", 
+#               "#DaenerysTargaryen",   In Progress
+#               "#JonSnow", 
+#               "#NightKing", 
+#               "#CerseiLannister", 
+#               "#AryaStark", 
+#               "#JaimeLannister", 
+#               "#TyrionLannister", 
+#               "#SansaStark",
+#               "#BranStark", 
+#               "#BrienneOfTarth", 
+#               "#DavosSeaworth", 
+#               "#EuronGreyjoy", 
+#               "#JorahMormont", 
+#               "#Greyworm", 
+#               "#Melisandre", 
+#               "#Missandei", 
+#               "#SamwellTarly", 
+#               "#TheonGreyjoy", 
+#               "#Varys", 
+#               "#TheHound"
+#              ])
