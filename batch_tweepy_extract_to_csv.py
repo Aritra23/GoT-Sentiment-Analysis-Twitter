@@ -53,8 +53,8 @@ auth = tw.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tw.API(auth, wait_on_rate_limit=True)
 
-search_words = '#JonSnow OR "Jon Snow"'
-char_name = "Jonsnow"
+search_words = '#BrienneOfTarth OR #BrienneTarth OR "Brienne Of Tarth" OR "Brienne Tarth'
+char_name = "BrienneOfTarth"
 
 dates = [["2019-05-11", "2019-05-12"], 
          ["2019-05-12", "2019-05-13"], 
@@ -81,7 +81,7 @@ for date_list in dates:
     tweets = tw.Cursor(api.search,
             q=search_words,
             lang="en",
-            since=date_since, until=date_until, encode="utf-8").items(100)
+            since=date_since, until=date_until, encode="utf-8").items(1000)
     
     for tweet in tweets:
         tweet_date.append(tweet.created_at.strftime('%m/%d/%Y'))
@@ -148,4 +148,4 @@ for index, row in df.iterrows():
     comb_string = ' '.join(test_preproc)
     df.loc[index, "Preprocess"] = comb_string
 
-df.to_csv("data/Jonsnow_11_18.csv", index=False)
+df.to_csv("data/BrienneOfTarth_11_18.csv", index=False)
