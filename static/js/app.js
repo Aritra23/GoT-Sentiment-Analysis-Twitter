@@ -21,29 +21,31 @@ function getData(event){
       var imgid = document.getElementById("img")
       imgid.height = 325;
       imgid.width = 325;
-      createGraph(char_list[index]["date"], char_list[index]["polarity"])
+      createGraph(char_list[index]["name"], char_list[index]["date"], char_list[index]["polarity"])
     }
   }
 };
 
-function createGraph(date, polarity) {
+function createGraph(name, date, polarity) {
   // console.log(date)
   // console.log(polarity)
   var trace1 = {
     x: date,
     y: polarity,
     type: "scatter",
-    name: "Polarity"
+    name: "Popularity"
   }
 
+  header_title = `Popularity of ${name}`
   data = [trace1]
   layout = {
-    title: "Polarity of Character",
+    // title: "Popularity of Character",
+    title: header_title,
     xaxis: {
       title: "Date"
     },
     yaxis: {
-      title: "Polarity"
+      title: "Popularity"
     }
   }
   Plotly.newPlot("graph", data, layout)

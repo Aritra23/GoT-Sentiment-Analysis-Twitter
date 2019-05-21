@@ -38,10 +38,10 @@ def obtain_data():
         char_dict["img_url"] = char["img_url"]
         char_name_img_list.append(char_dict)
     
-    file1 = "data/khaleesi.csv"
+    file1 = "data/combined.csv"
     df1 = pd.read_csv(file1)
     df = df1[["char", "date", "polarity"]]
-    df["char"] = "Daenerys Targaryen"
+    # df["char"] = "Daenerys Targaryen"
     df2 = df.groupby(["char", "date"])["polarity"].mean()
     file_df = df2.reset_index()
 
